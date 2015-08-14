@@ -1,5 +1,8 @@
 FROM daocloud.io/library/ubuntu:latest
 
+RUN mv /etc/apt/sources.list /etc/apt/soures.list.bak
+COPY ./dockerConf/sources.list.trusty /etc/apt/sources.list
+
 # 安装add-apt-repository工具
 RUN apt-get update && apt-get -y install software-properties-common --fix-missing
 
