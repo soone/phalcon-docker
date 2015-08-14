@@ -1,16 +1,15 @@
 FROM daocloud.io/library/ubuntu:latest
 
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 RUN mv /etc/apt/sources.list /etc/apt/soures.list.bak
 COPY ./dockerConf/sources.list.trusty /etc/apt/sources.list
 
 # 安装add-apt-repository工具
 RUN apt-get update && apt-get -y install software-properties-common --fix-missing
 
-# 安装apt-fast
-RUN add-apt-repository ppa:saiarcot895/myppa && apt-get update && apt-get -y install apt-fast
-
 RUN locale-gen en_US.UTF-8 && LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php5-5.6 && apt-get update && apt-get -y upgrade
-RUN apt-get -y install php5-dev php5-cli php5 php5-mongo php5-fpm php5-mysql php5-mcrypt php5-curl php5-imagick php5-common php5-redis gcc libpcre3-devo libmcrypt-dev libz-dev --fix-missing \
+RUN apt-get -y install php5-dev php5-cli php5 php5-mongo php5-fpm php5-mysql php5-mcrypt php5-curl php5-imagick php5-common php5-redis gcc libpcre3-dev libmcrypt-dev libz-dev --fix-missing \
     && apt-get clean \
     && apt-get autoremove \
     && apt-get autoclean \
