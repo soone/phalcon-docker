@@ -1,1 +1,3 @@
 dockerConf/cphalcon
+*.swp
+*.swo
