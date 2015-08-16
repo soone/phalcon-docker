@@ -27,13 +27,13 @@ RUN ln -s /etc/php5/mods-available/z-phalcon.ini /etc/php5/fpm/conf.d/z-phalcon.
 RUN ln -s /etc/php5/mods-available/z-phalcon.ini /etc/php5/cli/conf.d/z-phalcon.ini
 
 # 安装nginx
-RUN apt-get -y nginx --fix-missing
+RUN apt-get install -y nginx --fix-missing
 COPY ./dockerConf/phalcon_nginx.conf /etc/nginx/conf.d/phalcon_nginx.conf
 COPY ./dockerConf/nginx.conf /etc/nginx/nginx.conf
 
 RUN sed -i "s/display_errors\ =\ Off/display_errors\ =\ On/g" /etc/php5/fpm/php.ini && sed -i "s/display_errors\ =\ Off/display_errors\ =\ On/g" /etc/php5/cli/php.ini
 
-COPY ./dockerConf/start.sh /root
+COPY ./dockerConf/start.sh /root/start.sh
 
 RUN mkdir /app
 VOLUME /app
