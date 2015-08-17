@@ -11,4 +11,4 @@ git clone  --depth=1 git://github.com/phalcon/cphalcon.git dockerConf/cphalcon
 docker build -t phalcon-docker ./
 
 ## step 3
-docker -it -p 80:80 -v {your phalcon project dir}:/app -rm phalcon-docker
+docker run -it -p 80:80 -v {your phalcon project dir}:/app --rm phalcon-docker
